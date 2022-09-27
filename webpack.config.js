@@ -2,6 +2,8 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const BundleAnalzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const config = {
   name: "React-webpack-setting",
@@ -49,6 +51,13 @@ const config = {
       template: "./public/index.html",
     }),
     new MiniCssExtractPlugin(),
+    new BundleAnalzerPlugin({
+      analyzerMode: "static",
+      reportFilename: "bundle-report.html",
+      openAnalyzer: false,
+      generateStatsFile: true,
+      statsFilename: "bundle-stats.json",
+    }),
   ],
   optimization: {
     runtimeChunk: "single",
